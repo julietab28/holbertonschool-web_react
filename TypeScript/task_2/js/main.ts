@@ -1,3 +1,4 @@
+//Task 1 - Director and teacher
 interface DirectorInterface {
     workFromHome(): string;
     getCoffeeBreak(): string;
@@ -39,5 +40,19 @@ function createEmployee(salary: number | string): Director | Teacher {
         return new Teacher();
     } else {
         return new Director();
+    }
+}
+
+//Task 2 - Function isDirector
+
+function isDirector(employee: Director | Teacher): employee is Director {
+    return (employee as Director).workDirectorTasks !== undefined;
+}
+
+function executeWork(employee: Director | Teacher): string {
+    if (isDirector(employee)) {
+        return employee.workDirectorTasks();
+    } else {
+        return employee.workTeacherTasks();
     }
 }
